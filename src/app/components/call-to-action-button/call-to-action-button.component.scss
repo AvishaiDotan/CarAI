@@ -1,0 +1,18 @@
+@import '../../../assets/styles/colorPallet';
+
+button {
+    font-size: 1.5rem;
+    border-radius: 2em;
+    outline: none;
+    border: none;
+    padding: 15px;
+    padding-inline: 26px;
+    cursor: pointer;
+    background: $white;
+    transition: 0.3s; 
+    &:hover {
+        transition: 0.3s;
+        background: $blue-light;
+        color: $blue-dark;
+    }
+}

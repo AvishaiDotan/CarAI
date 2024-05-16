@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/styles/reset';
+@import './assets/styles/colorPallet';
+@import './assets/styles/typography';
+@import './assets/styles/mixin';
+@import './assets/styles/miscs';
+@import './assets/styles/helpers';
+
+:root {
+    --mdc-filled-text-field-active-indicator-color: #7bccdc !important;
+    --mdc-filled-text-field-hover-active-indicator-color: #d6ecf0 !important;
+    --mdc-filled-text-field-container-color: transparent !important;
+    --mdc-filled-text-field-label-text-color: #7bccdc !important;
+    --mdc-filled-text-field-hover-label-text-color: #d6ecf0 !important;
+    --mat-form-field-hover-state-layer-opacity: 0 !important;
+    --mdc-filled-text-field-focus-label-text-color: #d6ecf0 !important;
+    --mdc-filled-text-field-focus-active-indicator-color: #d6ecf0 !important;
+    --mdc-filled-text-field-input-text-color: #d6ecf0 !important;
+    --mat-form-field-focus-state-layer-opacity: 0 !important;
+    --mdc-filled-text-field-caret-color: #d6ecf0 !important;
+    --mat-select-enabled-trigger-text-color: #d6ecf0 !important;
+    --mat-select-focused-arrow-color: #d6ecf0 !important;
+    --mat-option-selected-state-label-text-color: #0b0014 !important;
+    --mat-minimal-pseudo-checkbox-selected-checkmark-color: #042d5f !important;
+    --mat-select-panel-background-color: #d6ecf0 !important;
+    --mdc-icon-button-icon-color: #7bccdc !important;
+}
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

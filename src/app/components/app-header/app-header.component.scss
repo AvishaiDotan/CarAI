@@ -1,0 +1,21 @@
+@import '../../../assets/styles/colorPallet';
+
+header {
+    height: 50px;
+    position: sticky;
+    inset-block-start: 0;
+    position: absolute;
+    width: 100%;
+    background-color: $black;
+    color: $white;
+
+    .mat-toolbar-row {
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        padding-inline: 35px;
+        box-sizing: border-box;
+    }
+} 

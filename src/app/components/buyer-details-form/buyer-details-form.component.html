@@ -1,0 +1,72 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- GeneralDetails -->
+    <p class="my-5 roboto-bold">Personal Details</p>
+    <section class="d-flex justify-content-between flex-column gap-6">
+        <div class="d-flex justify-content-between gap-6">
+            <!-- Full Name Field -->
+            <mat-form-field>
+                <mat-label>Full Name</mat-label>
+                <input maxlength="10" matInput formControlName="fullName" required>
+                <mat-error *ngIf="form.controls['fullName'].hasError('required')">
+                    Full Name is required
+                </mat-error>
+                <mat-error *ngIf="form.controls['fullName'].hasError('minlength')">
+                    Full Name must be at least 3 characters long
+                </mat-error>
+                <mat-error *ngIf="form.controls['fullName'].hasError('maxlength')">
+                    Full Name cannot be more than 10 characters long
+                </mat-error>
+                <mat-error *ngIf="form.controls['fullName'].hasError('noNumbers')">
+                    Full Name cannot contain numbers
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Gender Field -->
+            <mat-form-field>
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" required>
+                    <mat-option *ngFor="let g of genders" value="{{g}}">
+                        {{g}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.controls['gender'].hasError('required')">
+                    Gender is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="d-flex justify-content-between gap-6">
+            <!-- Email Field -->
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required type="email">
+                <mat-error *ngIf="form.controls['email'].hasError('required')">
+                    Email is required
+                </mat-error>
+                <mat-error *ngIf="form.controls['email'].hasError('email')">
+                    Invalid Email
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Birth Date Field -->
+            <mat-form-field>
+                <mat-label>Birth Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthDate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.controls['birthDate'].hasError('required')">
+                    Birth Date is required
+                </mat-error>
+                <mat-error *ngIf="form.controls['birthDate'].hasError('invalidDate')">
+                    Invalid Date. Please use the date picker or enter a date in the format YYYY-MM-DD
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </section>
+
+    <p class="my-5 roboto-bold">Location Details</p>
+
+
+
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>
