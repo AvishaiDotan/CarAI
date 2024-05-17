@@ -1,0 +1,32 @@
+<section 
+    *ngIf="currPage !== null && lastPage !== null" 
+    class="d-flex gap-3 align-items-center roboto-regular mt-5"
+    [ngClass]="buttonsLayoutClass"
+>
+    <div 
+        *ngIf="currPage !== 0" 
+        class="d-flex gap-3 align-items-center justify-content-between form-pagination-unit px-4 cursor-pointer"
+        (click)="goBack()"
+        >
+        <form-pagination-button  [icon]="'arrow_back'"/>
+        <p>Back</p>
+    </div>
+
+    <div 
+        *ngIf="currPage !== lastPage" 
+        class="d-flex gap-3 align-items-center justify-content-between form-pagination-unit px-4 cursor-pointer"
+        (click)="goNext()"
+    >
+        <p>Next</p>
+        <form-pagination-button [icon]="'arrow_forward'" />
+    </div>
+
+    <div 
+        *ngIf="currPage === lastPage" 
+        class="d-flex gap-3 align-items-center justify-content-between form-pagination-unit submit px-4 cursor-pointer"
+        (click)="submit()"
+    >
+        <form-pagination-button [icon]="'done'" />
+        <p>Submit</p>
+    </div>
+</section>

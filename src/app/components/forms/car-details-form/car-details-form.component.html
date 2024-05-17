@@ -1,0 +1,22 @@
+<form *ngIf="CarDetailsForm" [formGroup]="CarDetailsForm" (ngSubmit)="onSubmit()">
+	<!-- Car Details -->
+	<p class="my-5 roboto-bold">Car Details</p>
+	<section class="d-flex justify-content-between flex-column gap-6">
+		<div class="d-flex justify-content-between gap-6">
+			<mat-form-field>
+				<mat-label>Seats</mat-label>
+				<mat-select formControlName="seats" required>
+					<mat-option *ngFor="let seat of seats" [value]="seat">{{seat}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<div></div>
+		</div>
+
+		<div class="d-flex justify-content-between gap-6 flex-column">
+			<mat-radio-group formControlName="motorType" required>
+				<mat-radio-button *ngFor="let mType of motorTypes" value="{{mType}}">{{mType}}</mat-radio-button>
+			</mat-radio-group>
+		</div>
+
+	</section>
+</form>

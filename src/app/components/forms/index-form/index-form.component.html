@@ -1,0 +1,32 @@
+<!-- <personal-details-form [personalDetailsFrom]="personalDetailsform" />
+<location-form [locationFrom]="locationDetailsForm" /> -->
+
+<div [ngSwitch]="currForm$ | async" >
+    <personal-details-form 
+        *ngSwitchCase="0"
+        [personalDetailsFrom]="personalDetailsform" 
+    />
+    
+    <location-form 
+        *ngSwitchCase="1" 
+        [locationFrom]="locationDetailsForm"
+    />
+
+    <hobbies-and-favorite-color-form 
+        *ngSwitchCase="2" 
+        [hobbiesAndFavoriteColorForm]="hobbiesAndFavoriteColorForm" 
+    />
+
+    <car-details-form 
+        *ngSwitchCase="3" 
+        [CarDetailsForm]="carDetailsForm" />
+
+    <div *ngSwitchDefault>Select a form</div>
+</div>
+
+<form-navigation 
+    [currPage]="currForm$ | async" 
+    [lastPage]="forms.length - 1"
+    (Paginate)="paginate($event)"
+/>
+

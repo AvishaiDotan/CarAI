@@ -1,0 +1,25 @@
+@import '../../../assets/styles/colorPallet';
+
+.form-pagination-unit {
+    width: 90px;
+    height: 40px;
+    border-radius: 2em;
+    box-sizing: content-box;
+    transition: 0.1s;
+
+    &.submit {
+        background-color: $blue-light;
+        color: $black; 
+        &:hover {
+            box-shadow: $blue-0 1px 5px 5px;
+        }
+
+        .form-pagination-button {
+            color: $black;
+        }
+    }
+
+    &:hover:not(.submit) {
+        background-color: $transparentWhite;
+    }
+}

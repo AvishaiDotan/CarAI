@@ -1,0 +1,33 @@
+<form *ngIf="locationFrom" [formGroup]="locationFrom" (ngSubmit)="onSubmit()">
+    <!-- GeneralDetails -->
+    <p class="my-5 roboto-bold">Location Details</p>
+    <section class="d-flex justify-content-between flex-column gap-6">
+        <div class="d-flex justify-content-between gap-6">
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput formControlName="address" required>
+                <mat-error *ngIf="locationFrom.controls['address'].hasError('required')">
+                    Address field is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" required>
+                <mat-error *ngIf="locationFrom.controls['city'].hasError('required')">
+                    City field is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="d-flex justify-content-between gap-6">
+            <mat-form-field>
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="country" required>
+                <mat-error *ngIf="locationFrom.controls['country'].hasError('required')">
+                    Country field is required
+                </mat-error>
+            </mat-form-field>
+            <div></div>
+        </div>
+    </section>
+</form>

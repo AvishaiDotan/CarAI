@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output, output } from '@angular/core';
-import { CallToActionButtonComponent } from '../call-to-action-button/call-to-action-button.component';
+import { CallToActionButtonComponent } from '../buttons/call-to-action-button/call-to-action-button.component';
 
 @Component({
   selector: 'app-welcome',

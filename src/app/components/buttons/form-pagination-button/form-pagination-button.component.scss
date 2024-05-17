@@ -1,0 +1,21 @@
+@import '../../../../assets/styles/colorPallet';
+
+.form-navigation-button {
+    color: $white;
+    background: transparent;
+    border: none;
+    // height: 40px;
+    // width: 40px;
+    border-radius: 50%;
+    transition: 0.1s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    &.done {
+        color: $black;
+    }
+
+}

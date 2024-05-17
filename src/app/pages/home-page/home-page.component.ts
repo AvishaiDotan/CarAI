@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AppHeroComponent } from '../app-hero/app-hero.component';
-import { AppWelcomeComponent } from '../app-welcome/app-welcome.component';
+
+
 import { Router } from '@angular/router';
+import { AppHeroComponent } from '../../components/app-hero/app-hero.component';
+import { AppWelcomeComponent } from '../../components/app-welcome/app-welcome.component';
 
 @Component({
 	selector: 'home-page',

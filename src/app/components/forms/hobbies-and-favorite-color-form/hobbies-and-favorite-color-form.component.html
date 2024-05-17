@@ -1,0 +1,31 @@
+<form *ngIf="hobbiesAndFavoriteColorForm" [formGroup]="hobbiesAndFavoriteColorForm" (ngSubmit)="onSubmit()">
+    <!-- hobbies And Favorite Color -->
+    <p class="my-5 roboto-bold">Hobbies and Color preference</p>
+    <section class="d-flex justify-content-between flex-column gap-6">
+        <div class="d-flex justify-content-between gap-6 flex-column">
+            <mat-form-field>
+                <mat-label>Hobbies</mat-label>
+                <mat-select formControlName="hobbies" multiple required>
+                    <mat-option *ngFor="let h of hobbies" [value]="h">
+                        {{ h }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="hobbiesAndFavoriteColorForm.controls['hobbies'].hasError('required')">
+                    Hobbies field is required
+                </mat-error>
+            </mat-form-field>
+
+            <div>
+                <mat-form-field style="width: 100%; padding: 0;">
+                    <mat-label>Favorite Color</mat-label>
+                    <color-github style="background-color: none;;" formControlName="favoriteColor" [required]="true" width="100%" triangle="hide"
+                    [(color)]="color" />
+                    <input style="display: none;" matInput formControlName="favoriteColor" type="color" required/>
+                    <mat-error *ngIf="hobbiesAndFavoriteColorForm.controls['favoriteColor'].hasError('required')">
+                        Favorite Color field is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </section>
+</form>
