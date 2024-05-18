@@ -3,6 +3,7 @@
     class="d-flex gap-3 align-items-center roboto-regular mt-5"
     [ngClass]="buttonsLayoutClass"
 >
+    <!-- Back -->
     <div 
         *ngIf="currPage !== 0" 
         class="d-flex gap-3 align-items-center justify-content-between form-pagination-unit px-4 cursor-pointer"
@@ -12,6 +13,7 @@
         <p>Back</p>
     </div>
 
+    <!-- Next -->
     <div 
         *ngIf="currPage !== lastPage" 
         class="d-flex gap-3 align-items-center justify-content-between form-pagination-unit px-4 cursor-pointer"
@@ -21,6 +23,7 @@
         <form-pagination-button [icon]="'arrow_forward'" />
     </div>
 
+    <!-- Submit -->
     <div 
         *ngIf="currPage === lastPage" 
         class="d-flex gap-3 align-items-center justify-content-between form-pagination-unit submit px-4 cursor-pointer"

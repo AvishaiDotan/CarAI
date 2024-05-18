@@ -17,4 +17,6 @@ import { CommonModule } from '@angular/common';
 })
 export class FormPaginationButtonComponent {
 	@Input() icon!: string;
+	@Input() isDisabled!: boolean;
 }
+

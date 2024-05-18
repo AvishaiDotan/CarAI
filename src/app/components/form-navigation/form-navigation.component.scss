@@ -6,6 +6,7 @@
     border-radius: 2em;
     box-sizing: content-box;
     transition: 0.1s;
+    border: 1px solid $transparentWhite;
 
     &.submit {
         background-color: $blue-light;
@@ -19,7 +20,7 @@
         }
     }
 
-    &:hover:not(.submit) {
+    &:hover:not(.submit):not(.disabled) {
         background-color: $transparentWhite;
     }
 }

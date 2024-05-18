@@ -1,23 +1,27 @@
 <!-- <personal-details-form [personalDetailsFrom]="personalDetailsform" />
 <location-form [locationFrom]="locationDetailsForm" /> -->
 
-<div [ngSwitch]="currForm$ | async" >
-    <personal-details-form 
+<div [ngSwitch]="currFormIdx$ | async" >
+    <personal-details-form
+        (onFormValidationChange)="formValidationChange($event, 0)" 
         *ngSwitchCase="0"
         [personalDetailsFrom]="personalDetailsform" 
     />
     
     <location-form 
+        (onFormValidationChange)="formValidationChange($event, 1)"
         *ngSwitchCase="1" 
         [locationFrom]="locationDetailsForm"
     />
 
     <hobbies-and-favorite-color-form 
+        (onFormValidationChange)="formValidationChange($event, 2)"
         *ngSwitchCase="2" 
         [hobbiesAndFavoriteColorForm]="hobbiesAndFavoriteColorForm" 
     />
 
     <car-details-form 
+        (onFormValidationChange)="formValidationChange($event, 2)"
         *ngSwitchCase="3" 
         [CarDetailsForm]="carDetailsForm" />
 
@@ -25,8 +29,10 @@
 </div>
 
 <form-navigation 
-    [currPage]="currForm$ | async" 
+    [isValidForm]="isValidForm"
+    [currPage]="currFormIdx$ | async" 
     [lastPage]="forms.length - 1"
-    (Paginate)="paginate($event)"
+    (OnPaginate)="paginate($event)"
+    (OnFocusOnInvalidField)="focusOnInvalidField()"
 />
 

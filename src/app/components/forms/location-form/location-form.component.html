@@ -1,4 +1,4 @@
-<form *ngIf="locationFrom" [formGroup]="locationFrom" (ngSubmit)="onSubmit()">
+<form *ngIf="locationFrom" [formGroup]="locationFrom" formValidationChange (onFormValidationChange)="onFormValidationChange.emit($event)">
     <!-- GeneralDetails -->
     <p class="my-5 roboto-bold">Location Details</p>
     <section class="d-flex justify-content-between flex-column gap-6">

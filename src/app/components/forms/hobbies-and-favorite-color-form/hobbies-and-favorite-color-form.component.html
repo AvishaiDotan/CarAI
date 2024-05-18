@@ -1,4 +1,4 @@
-<form *ngIf="hobbiesAndFavoriteColorForm" [formGroup]="hobbiesAndFavoriteColorForm" (ngSubmit)="onSubmit()">
+<form *ngIf="hobbiesAndFavoriteColorForm" [formGroup]="hobbiesAndFavoriteColorForm" formValidationChange (onFormValidationChange)="onFormValidationChange.emit($event)">
     <!-- hobbies And Favorite Color -->
     <p class="my-5 roboto-bold">Hobbies and Color preference</p>
     <section class="d-flex justify-content-between flex-column gap-6">
@@ -18,7 +18,7 @@
             <div>
                 <mat-form-field style="width: 100%; padding: 0;">
                     <mat-label>Favorite Color</mat-label>
-                    <color-github style="background-color: none;;" formControlName="favoriteColor" [required]="true" width="100%" triangle="hide"
+                    <color-github style="background-color: none;" formControlName="favoriteColor" [required]="true" width="100%" triangle="hide"
                     [(color)]="color" />
                     <input style="display: none;" matInput formControlName="favoriteColor" type="color" required/>
                     <mat-error *ngIf="hobbiesAndFavoriteColorForm.controls['favoriteColor'].hasError('required')">

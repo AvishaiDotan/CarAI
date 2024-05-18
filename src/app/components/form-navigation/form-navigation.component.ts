@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormPaginationButtonComponent } from '../buttons/form-pagination-button/form-pagination-button.component';
 import { CommonModule } from '@angular/common';
-import { PaginationEnum } from '../../models';
+import { FormEnum, PaginationEnum } from '../../models';
 
 @Component({
 	selector: 'form-navigation',
@@ -13,8 +13,10 @@ import { PaginationEnum } from '../../models';
 export class FormNavigationComponent {
 	@Input() currPage: number | null = null;
 	@Input() lastPage: number | null = null;
-	@Output() Paginate: EventEmitter<PaginationEnum> = new EventEmitter<PaginationEnum>();
 
+	@Input() isValidForm: boolean = false;
+	@Output() OnPaginate: EventEmitter<PaginationEnum> = new EventEmitter<PaginationEnum>();
+	@Output() OnFocusOnInvalidField: EventEmitter<void> = new EventEmitter<void>();
 	get buttonsLayoutClass(): string {
 		// Case 1: When the user is in the first page
 		// Attach the next button to the right side of the container 
@@ -29,14 +31,14 @@ export class FormNavigationComponent {
 	}
 
 	goBack() {
-		this.Paginate.emit(PaginationEnum.Prev);
+		this.OnPaginate.emit(PaginationEnum.Prev);
 	}
 
 	goNext() {
-		this.Paginate.emit(PaginationEnum.Next);
+		(this.isValidForm) ? this.OnPaginate.emit(PaginationEnum.Next) : this.OnFocusOnInvalidField.emit();
 	}
 
 	submit() {
-		this.Paginate.emit(PaginationEnum.Submit);
+		(this.isValidForm) ? this.OnPaginate.emit(PaginationEnum.Submit) : this.OnFocusOnInvalidField.emit();
 	}
 }

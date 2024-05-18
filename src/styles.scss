@@ -25,12 +25,30 @@
     --mat-minimal-pseudo-checkbox-selected-checkmark-color: #042d5f !important;
     --mat-select-panel-background-color: #d6ecf0 !important;
     --mdc-icon-button-icon-color: #7bccdc !important;
+    --mat-radio-checked-ripple-color: #d6ecf0 !important;
+    // --mdc-form-field-label-text-color: #d6ecf0 !important;
+    // --mdc-radio-unselected-icon-color: #d6ecf0 !important;
 }
 
 
 .mat-mdc-text-field-wrapper {
     padding: 3px !important;
 }
+
+.mdc-radio__outer-circle {
+    border-color: #d6ecf0 !important;
+}
+
+.mdc-radio__inner-circle {
+    border-color: #7bccdc !important;
+}
+.mdc-label {
+    color: #d6ecf0 !important;
+}
+.mat-mdc-radio-button.mat-mdc-radio-checked .mdc-radio__background::before {
+    background-color: #d6ecf0 !important;
+}
+
 
 // Overrides for Color Picker
 .github-picker {

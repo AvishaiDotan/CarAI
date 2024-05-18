@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { MatFormFieldModule, MatError } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -41,13 +41,22 @@ export class IndexForm implements OnInit {
 		FormEnum.carDetailsForm
 	]
 
+	validForms: FormEnum[] = [];
+
 	personalDetailsform!: FormGroup;
 	locationDetailsForm!: FormGroup;
 	hobbiesAndFavoriteColorForm!: FormGroup;
 	carDetailsForm!: FormGroup;
 
-	currForm$!: Observable<number>
-	_currForm$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+	@ViewChild(PersonalDetailsFormComponent) personalDetailsFormComponent!: PersonalDetailsFormComponent;
+	@ViewChild(LocationFormComponent) locationFormComponent!: LocationFormComponent;
+	@ViewChild(HobbiesAndFavoriteColorFormComponent) HobbiesAndFavoriteColorFormComponent!: HobbiesAndFavoriteColorFormComponent;
+	@ViewChild(CarDetailsFormComponent) carDetailsFormComponent!: CarDetailsFormComponent;
+	
+	currFormIdx$!: Observable<number>
+	_currFormIdx$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+	activeForm: FormEnum | null = null;
+	
 
 	constructor(private fb: FormBuilder) { }
 
@@ -78,27 +87,30 @@ export class IndexForm implements OnInit {
 
 		this.carDetailsForm = this.fb.group({
 			seats: [null, Validators.required],
-			motorType: ['', Validators.required]
+			motorType: ['Petrol', Validators.required]
 		});
 
-		this.currForm$ = this._currForm$.asObservable();
+		this.currFormIdx$ = this._currFormIdx$.asObservable();
+		this.currFormIdx$.subscribe((idx) => {
+			this.activeForm = this.forms[idx];
+		})
 	}
 
 	goNextForm() {
-		const currStep = this._currForm$.value;
+		const currStep = this._currFormIdx$.value;
 		const maxStep = this.forms.length - 1;
 		const nextStep = currStep + 1;
 		if (currStep < maxStep) {
-			this._currForm$.next(nextStep);
+			this._currFormIdx$.next(nextStep);
 		}
 	}
 
 	goPrevForm() {
-		const currStep = this._currForm$.value;
+		const currStep = this._currFormIdx$.value;
 		const minStep = 0;
 		const prevStep = currStep - 1;
 		if (currStep > minStep) {
-			this._currForm$.next(prevStep);
+			this._currFormIdx$.next(prevStep);
 		}
 	}
 
@@ -114,5 +126,39 @@ export class IndexForm implements OnInit {
 				console.log('Submitting form');
 				break;
 		}
+	}
+
+	
+	formValidationChange(isValid: boolean, form: FormEnum) {
+		if (isValid) {
+			if (!this.validForms.some(f => f === form)) {
+				this.validForms.push(form);
+			}
+		} else {
+			this.validForms = this.validForms.filter(f => f !== form);
+		}
+	}
+	
+	focusOnInvalidField() {
+		var currForm = this.activeForm;
+		switch (currForm) {
+			case FormEnum.personalDetailsForm:
+				this.personalDetailsFormComponent.focusOnInvalidField();
+				break;
+			case FormEnum.locationFrom:
+				this.locationFormComponent.focusOnInvalidField();
+				break;
+			case FormEnum.hobbiesAndFavoriteColorForm:
+				this.HobbiesAndFavoriteColorFormComponent.focusOnInvalidField();
+				break;
+			case FormEnum.carDetailsForm:
+				this.carDetailsFormComponent.focusOnInvalidField();
+				break;
+		}
+	}
+
+	get isValidForm() {
+		const currForm = this.activeForm;
+		return (this.validForms.length > 0 && this.validForms.some(f => f === currForm))
 	}
 }
