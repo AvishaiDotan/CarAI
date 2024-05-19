@@ -1,0 +1,43 @@
+@import '../../../assets/styles/colorPallet';
+
+:host {
+    height: 100%;
+    display: block;
+    background-color: $white;
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+    border-block-end: solid 1px $blue-light;
+    box-shadow: 0 5px 5px #7bccdc3d;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+
+    > button {
+        text-align: center;
+        display: block;
+        height: 100%;
+        border: 0;
+        cursor: pointer;
+        transition: 0.3s;
+
+        
+        &.active {
+            background-color: $blue-light;
+        }
+        &:hover {
+            background-color: #5cafc0;
+        }
+    }
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+}
+

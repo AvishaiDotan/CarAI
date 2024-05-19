@@ -1,6 +1,12 @@
 <header>
     <mat-toolbar-row>
         <span class="kanit-medium fs-5 cursor-pointer">CarAI</span>
-        <mat-icon fontIcon="manage_accounts" class="cursor-pointer">manage_accounts</mat-icon>
+        <div class="d-flex gap-5">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" router class="roboto-regular fs-2 cursor-pointer">Home</a>
+            <!-- <a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="roboto-regular fs-2 cursor-pointer">About Us</a>
+            <a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="roboto-regular fs-2 cursor-pointer">How it works</a> -->
+            <a routerLink="/form" routerLinkActive="active"[routerLinkActiveOptions]="{ exact: true }"  class="roboto-regular fs-2 cursor-pointer">CarAI Form</a>
+        </div>
+        <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="roboto-medium fs-2 cursor-pointer">Admin Center</a>
       </mat-toolbar-row>
 </header>

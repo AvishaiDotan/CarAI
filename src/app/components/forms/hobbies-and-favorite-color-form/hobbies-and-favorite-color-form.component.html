@@ -1,4 +1,5 @@
-<form *ngIf="hobbiesAndFavoriteColorForm" [formGroup]="hobbiesAndFavoriteColorForm" formValidationChange (onFormValidationChange)="onFormValidationChange.emit($event)">
+<form *ngIf="hobbiesAndFavoriteColorForm" [formGroup]="hobbiesAndFavoriteColorForm" formValidationChange
+    (onFormValidationChange)="onFormValidationChange.emit($event)">
     <!-- hobbies And Favorite Color -->
     <p class="my-5 roboto-bold">Hobbies and Color preference</p>
     <section class="d-flex justify-content-between flex-column gap-6">
@@ -15,15 +16,14 @@
                 </mat-error>
             </mat-form-field>
 
-            <div>
-                <mat-form-field style="width: 100%; padding: 0;">
-                    <mat-label>Favorite Color</mat-label>
-                    <color-github style="background-color: none;" formControlName="favoriteColor" [required]="true" width="100%" triangle="hide"
-                    [(color)]="color" />
-                    <input style="display: none;" matInput formControlName="favoriteColor" type="color" required/>
-                    <mat-error *ngIf="hobbiesAndFavoriteColorForm.controls['favoriteColor'].hasError('required')">
-                        Favorite Color field is required
-                    </mat-error>
+            <div class="color-picker-wrapper">
+                <mat-form-field style="width: 100%; padding: 0; " class="my-4">
+                    <mat-label class="adsasdasdasd">Favorite Color</mat-label>
+                    <div class="d-flex justify-content-between align-items-center color-picker-container gap-3">
+                            <color-circle formControlName="favoriteColor" [required]="true" width="100%" triangle="hide"
+                            [(color)]="color" [colors]="colors" />
+                    </div>
+                    <input style="display: none;" matInput formControlName="favoriteColor" type="color" required />
                 </mat-form-field>
             </div>
         </div>

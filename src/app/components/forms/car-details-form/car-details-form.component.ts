@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelect, MatOption } from '@angular/material/select';
 import { MatRadioModule, MatRadioGroup, MatRadioButton,  } from '@angular/material/radio';
 import { FormValidationChangeDirective } from '../../../directives/form-validation-change.directive';
+import { MotorType } from '../../../models';
 @Component({
 	selector: 'car-details-form',
 	standalone: true,
@@ -32,7 +33,7 @@ export class CarDetailsFormComponent {
 	@Output() onFormValidationChange = new EventEmitter<boolean>();
 	
 	seats: number[] = [2, 3, 4, 5, 6, 7];
-	motorTypes: string[] = ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
+	motorTypes: MotorType[] = ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
 
 	focusOnInvalidField() {
 		

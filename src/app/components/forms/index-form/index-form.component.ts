@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { MatFormFieldModule, MatError } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -9,11 +9,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { PersonalDetailsFormComponent } from '../personal-details-form/personal-details-form.component';
 import { FormValidationService } from '../../../services/form-validation.service';
 import { LocationFormComponent } from '../location-form/location-form.component';
-import { FormEnum, PaginationEnum } from '../../../models';
+import { FormEnum, PaginationEnum, UserDetailsForm } from '../../../models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FormNavigationComponent } from '../../form-navigation/form-navigation.component';
 import { HobbiesAndFavoriteColorFormComponent } from '../hobbies-and-favorite-color-form/hobbies-and-favorite-color-form.component';
 import { CarDetailsFormComponent } from '../car-details-form/car-details-form.component';
+import { FormService } from '../../../services/form.service';
 
 
 @Component({
@@ -28,12 +29,14 @@ import { CarDetailsFormComponent } from '../car-details-form/car-details-form.co
 		CommonModule,
 		FormNavigationComponent,
 		HobbiesAndFavoriteColorFormComponent,
-		CarDetailsFormComponent
+		CarDetailsFormComponent,
 	],
 	templateUrl: './index-form.component.html',
 	styleUrl: './index-form.component.scss'
 })
 export class IndexForm implements OnInit {
+	@Output() onSubmitForm = new EventEmitter<UserDetailsForm>();
+
 	forms: FormEnum[] = [
 		FormEnum.personalDetailsForm,
 		FormEnum.locationFrom,
@@ -61,34 +64,7 @@ export class IndexForm implements OnInit {
 	constructor(private fb: FormBuilder) { }
 
 	ngOnInit() {
-		this.personalDetailsform = this.fb.group({
-			fullName: ['', [
-				Validators.required,
-				Validators.minLength(3),
-				Validators.maxLength(10),
-				Validators.pattern(/^[a-zA-Z ]*$/),
-				FormValidationService.noNumbersValidator
-			]],
-			gender: ['', Validators.required],
-			email: ['', [Validators.required, Validators.email]],
-			birthDate: ['', [FormValidationService.validDateValidator, Validators.required]],
-		});
-
-		this.locationDetailsForm = this.fb.group({
-			address: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-			city: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-			country: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
-		});
-
-		this.hobbiesAndFavoriteColorForm = this.fb.group({
-			hobbies: [[], Validators.required],
-			favoriteColor: ['red', Validators.required],
-		})
-
-		this.carDetailsForm = this.fb.group({
-			seats: [null, Validators.required],
-			motorType: ['Petrol', Validators.required]
-		});
+		this.initForms();
 
 		this.currFormIdx$ = this._currFormIdx$.asObservable();
 		this.currFormIdx$.subscribe((idx) => {
@@ -114,7 +90,21 @@ export class IndexForm implements OnInit {
 		}
 	}
 
+	submitForm() {
+		
+		const userForm: UserDetailsForm = {
+			...this.personalDetailsform.value,
+			...this.locationDetailsForm.value,
+			...this.hobbiesAndFavoriteColorForm.value,
+			...this.carDetailsForm.value
+		}
+		
+		this.onSubmitForm.emit(userForm)
+	}
+
 	paginate(paginationAction: PaginationEnum) {
+		
+		
 		switch (paginationAction) {
 			case PaginationEnum.Prev:
 				this.goPrevForm();
@@ -123,7 +113,7 @@ export class IndexForm implements OnInit {
 				this.goNextForm();
 				break;
 			case PaginationEnum.Submit:
-				console.log('Submitting form');
+				this.submitForm();
 				break;
 		}
 	}
@@ -155,6 +145,37 @@ export class IndexForm implements OnInit {
 				this.carDetailsFormComponent.focusOnInvalidField();
 				break;
 		}
+	}
+
+	initForms() {
+		this.personalDetailsform = this.fb.group({
+			fullName: ['', [
+				Validators.required,
+				Validators.minLength(3),
+				Validators.maxLength(10),
+				Validators.pattern(/^[a-zA-Z ]*$/),
+				FormValidationService.noNumbersValidator
+			]],
+			gender: ['', Validators.required],
+			email: ['', [Validators.required, Validators.email]],
+			birthDate: ['', [FormValidationService.validDateValidator, Validators.required]],
+		});
+
+		this.locationDetailsForm = this.fb.group({
+			address: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+			city: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+			country: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+		});
+
+		this.hobbiesAndFavoriteColorForm = this.fb.group({
+			hobbies: [[], Validators.required],
+			favoriteColor: ['red', Validators.required],
+		})
+
+		this.carDetailsForm = this.fb.group({
+			seats: [null, Validators.required],
+			motorType: ['Petrol', Validators.required]
+		});
 	}
 
 	get isValidForm() {

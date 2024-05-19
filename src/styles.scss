@@ -51,8 +51,9 @@
 
 
 // Overrides for Color Picker
-.github-picker {
-    background-color: transparent !important;
+.color-picker-container > *:first-child {
+    // background-color: transparent !important;
+    // flex-basis: 85%;
 }
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

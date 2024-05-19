@@ -1,0 +1,13 @@
+@import '../../../assets/styles/colorPallet';
+
+:host {
+    height: 100%;
+    display: block;
+    background-color: $blue-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: $white;
+    position: relative;
+}

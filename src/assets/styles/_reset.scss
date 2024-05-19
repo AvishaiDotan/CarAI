@@ -50,3 +50,14 @@ table {
 * {
 	box-sizing: border-box;
 }
+
+a:-webkit-any-link {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
