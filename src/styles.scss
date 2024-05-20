@@ -30,6 +30,23 @@
     // --mdc-radio-unselected-icon-color: #d6ecf0 !important;
 }
 
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    // border-radius: 8px;
+    background-color: $white-light;
+    border: 1px solid $blue-light;
+    box-shadow: inset 0 0 6px $white-light;
+}
+
+*::-webkit-scrollbar-thumb {
+    // border-radius: 8px;
+    background-color: $blue-light;
+}
+/*        ScrollBar 3    */
+
 
 .mat-mdc-text-field-wrapper {
     padding: 3px !important;
@@ -50,10 +67,46 @@
 }
 
 
-// Overrides for Color Picker
-.color-picker-container > *:first-child {
-    // background-color: transparent !important;
-    // flex-basis: 85%;
+
+
+
+.table-container {
+    height: 400px; /* Set the desired height */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    color: $white-light !important;
+    background-color: transparent !important;
+}
+
+.table-container thead th {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    background-color: $blue-dark !important; /* Optional: add background color to header */
+    color: $blue-light !important;
+    font-family: 'Pathway Extreme';
+    font-weight: 800;
+    
+    z-index: 1; /* Ensure the header stays on top */
+}
+
+.table-container tr {
+    background-color: transparent !important;
+    color: $white-light !important;
+}
+
+.table-container table {
+    background-color: transparent !important;
+    color: $white-light !important;
+}
+
