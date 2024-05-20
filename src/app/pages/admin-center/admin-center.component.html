@@ -21,86 +21,93 @@
 </header>
 
 <section class="container">
-    <section *ngIf="(forms$ | async) as forms" class="table-container m-5">
-        <div>
-            <table mat-table [dataSource]="forms" class="mat-elevation-z8" [autocapitalize]="true">
-        
-                <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
-        
-                <!-- Position Column -->
-                <ng-container matColumnDef="address">
-                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-                </ng-container>
-        
-                <!-- Name Column -->
-                <ng-container matColumnDef="birthDate">
-                    <th mat-header-cell *matHeaderCellDef> Name </th>
-                    <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
-                </ng-container>
-        
-                <!-- Weight Column -->
-                <ng-container matColumnDef="city">
-                    <th mat-header-cell *matHeaderCellDef> Weight </th>
-                    <td mat-cell *matCellDef="let element"> {{element.city}} </td>
-                </ng-container>
-        
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="country">
-                    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                    <td mat-cell *matCellDef="let element"> {{element.country}} </td>
-                </ng-container>
-        
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
-        </div>
-    </section>
-    <div class="general-user-details-graph roboto-medium">
-        <!-- <h3 class="py-4">
-            <span>
-                Country
+    <div class="d-flex flex-column">
+        <section *ngIf="(forms$ | async) as forms" class="table-container m-5 d-flex flex-column" style="flex-basis: 50%;">
+            <div>
+                <table mat-table [dataSource]="forms" class="mat-elevation-z8" [autocapitalize]="true">
+            
+                    <ng-container matColumnDef="fullName">
+                        <th mat-header-cell *matHeaderCellDef> Full Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="birthDate">
+                        <th mat-header-cell *matHeaderCellDef> Age </th>
+                        <td mat-cell *matCellDef="let element"> {{ parseAge(element.birthDate) }} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="country">
+                        <th mat-header-cell *matHeaderCellDef> Country </th>
+                        <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="hobbies">
+                        <th mat-header-cell *matHeaderCellDef> Hobbies </th>
+                        <td mat-cell *matCellDef="let element"> {{parseHobbies(element.hobbies)}} </td>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </section>
+        <h3 class="py-4 roboto-medium complex-data-header  d-flex gap-5 justify-content-center">
+            General View 
+        </h3>
+        <div class="polar-graph graph roboto-medium" style="flex-basis: 50%;">
+            <ngx-charts-area-chart
+            [showXAxisLabel]="true"
+            [xAxis]="true"
+            [scheme]="colorScheme"
+
+            [results]="(polarGraphData$ | async)" />
+    </div>
+    </div>
+
+    <section class="d-flex flex-column right-graphs-container">
+        <h3 class="py-4 roboto-medium  d-flex gap-5 justify-content-center">
+            <span 
+                (click)="onActivatePropery('userDetails', p)"
+                *ngFor="let p of generalUserDetailsGraphProperties" 
+                [ngClass]="{'roboto-medium': (activeGeneralUserDetailsGraphProperty$ | async) === p, 'roboto-thin': (activeGeneralUserDetailsGraphProperty$ | async) !== p}" class="capitalize cursor-pointer">
+                {{ p }}
             </span>
-            <span>
-                Gender
-            </span>
-            <span>
-                Age
-            </span>
-        </h3> -->
-        <ngx-charts-bar-vertical 
+        </h3>
+        <div class="general-user-details-graph graph roboto-medium mb-5">
+
+            <ngx-charts-bar-vertical 
             [scheme]="colorScheme"
             [xAxis]="true"
             [showGridLines]="false"
-            [results]="data"
+            [results]="(generalUserDetailsGraphData$ | async)"
             [noBarWhenZero]="true"
             xAxisLabel="Gender"
             yAxisLabel="Count"
             [tooltipDisabled]="true"
             [gradient]="true"
-        
-        >
-      </ngx-charts-bar-vertical>
+            
+            >
+        </ngx-charts-bar-vertical>
     </div>
-    <div class="car-details-graph roboto-medium">
-        <!-- <h3 class="py-4">
-            <span>
-                Engine Type
-            </span>
-            <span>
-                Seats
-            </span>
-        </h3> -->
+    <h3 class="py-4 roboto-medium text-center car-details-graph-header d-flex gap-5 justify-content-center">
+        <span 
+        (click)="onActivatePropery('carDetails', p)"
+        *ngFor="let p of carDetailsGraphProperties" 
+        [ngClass]="{'roboto-medium': (activeCarDetailsGraphProperty$ | async) === p, 'roboto-thin': (activeCarDetailsGraphProperty$ | async) !== p}" class="capitalize cursor-pointer text-nowrap">
+            {{ p }}
+        </span>
+    </h3>
+    <div class="car-details-graph graph roboto-medium">
         <ngx-charts-pie-chart
-            [scheme]="colorScheme"
-            [results]="data"
-            [gradient]="true"
-            [labels]="true"
-            [doughnut]="true"
-  >
-</ngx-charts-pie-chart>
-    </div>
+        [scheme]="colorScheme"
+        [results]="(carDetailsGraphData$ | async)"
+        [gradient]="true"
+        [labels]="true"
+        [doughnut]="true"
+        >
+    </ngx-charts-pie-chart>
+</div>
+</section>
 
 </section>
 

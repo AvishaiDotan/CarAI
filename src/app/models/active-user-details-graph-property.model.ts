@@ -1,0 +1,1 @@
+export type activeUserDetailsGraphProperty = 'country' | 'gender' | 'age'

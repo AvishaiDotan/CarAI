@@ -1,0 +1,1 @@
+export type ActiveCarDetailsGraphProperty = 'motor type' | 'seats'
