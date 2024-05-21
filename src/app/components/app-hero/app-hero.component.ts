@@ -13,13 +13,13 @@ export class AppHeroComponent implements OnInit {
 	intervalKey: any | undefined;
 
 	imgUrls: string[] = [
-		"../../../assets/images/app-hero-1.webp",
-		"../../../assets/images/app-hero-2.webp",
-		"../../../assets/images/app-hero-3.webp",
-		"../../../assets/images/app-hero-4.webp",
-		"../../../assets/images/app-hero-5.webp",
-		"../../../assets/images/app-hero-6.webp",
-		"../../../assets/images/app-hero-7.webp",
+		"assets/images/app-hero-1.webp",
+		"assets/images/app-hero-2.webp",
+		"assets/images/app-hero-3.webp",
+		"assets/images/app-hero-4.webp",
+		"assets/images/app-hero-5.webp",
+		"assets/images/app-hero-6.webp",
+		"assets/images/app-hero-7.webp",
 	];
 
 	imgUrl$!: Observable<string>
