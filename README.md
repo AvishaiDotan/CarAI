@@ -19,7 +19,7 @@ CarAI is an application that allows users to fill out a form and receive an emai
 
 ### CarAI Form
 
-The form is a reactive form with built-in validations and custom validations. It uses a pagination component to navigate between different parts of the form. When submitted, the form checks the security of the input using `DomSanitizer`.
+The form is a reactive form with `built-in validations and custom validations`. It uses a pagination component to navigate between different parts of the form. When submitted, the form checks the security of the input using `DomSanitizer`.
 
 ### CarAI Admin Center
 
