@@ -1,6 +1,6 @@
 # CarAI
 
-CarAI is an application that allows users to fill out a form and receive an email with the best-fit car for them based on their input.
+**CarAI is an application that allows users to fill out a form and receive an email with the best-fit car for them based on their input.**
 
 ![Untitled design](https://github.com/AvishaiDotan/CarAI/assets/108017307/90629b3e-7e7a-4d18-8747-82368f3ca64b)
 
