@@ -29,6 +29,7 @@ The form is a reactive form with `built-in validations and custom validations`. 
 ### CarAI Admin Center
 
 The Admin Center is the place for administrators to view results and statistics. It contains:
+![Untitled design (13)](https://github.com/AvishaiDotan/CarAI/assets/108017307/86cac005-0f91-4346-a0ff-26ab94c0f370)
 
 - A table for detailed data
 - Three graphs generated with `ngx-graph`
