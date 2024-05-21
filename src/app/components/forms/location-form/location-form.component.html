@@ -3,7 +3,7 @@
     <p class="my-5 roboto-bold">Location Details</p>
     <section class="d-flex justify-content-between flex-column gap-6">
         <div class="d-flex justify-content-between gap-6">
-            <mat-form-field>
+            <mat-form-field class="flex-grow-1">
                 <mat-label>Address</mat-label>
                 <input matInput formControlName="address" required>
                 <mat-error *ngIf="locationFrom.controls['address'].hasError('required')">
@@ -11,7 +11,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field>
+            <mat-form-field class="flex-grow-1">
                 <mat-label>City</mat-label>
                 <input matInput formControlName="city" required>
                 <mat-error *ngIf="locationFrom.controls['city'].hasError('required')">
@@ -20,7 +20,7 @@
             </mat-form-field>
         </div>
         <div class="d-flex justify-content-between gap-6">
-            <mat-form-field>
+            <mat-form-field style="flex-basis: calc(50% - 22px);">
                 <mat-label>Country</mat-label>
                 <input matInput formControlName="country" required>
                 <mat-error *ngIf="locationFrom.controls['country'].hasError('required')">

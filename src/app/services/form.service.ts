@@ -48,19 +48,16 @@ export class FormService {
 	}
 
 	public mockData() {
-		// Define possible values for hobbies, motor types, countries, names, and birth years
 		const hobbies = ['Reading', 'Traveling', 'Playing Video Games', 'Watching Movies', 'Listening to Music', 'Cooking', 'Exercising'];
 		const motorTypes = ['Petrol', 'Diesel', 'Electric', 'Hybrid'];
 		const countries = ['United States', 'Canada', 'Israel', 'Germany', 'Australia'];
 		const names = ['John Doe', 'Jane Smith', 'Michael Johnson', 'Emily Davis', 'David Brown'];
 		const birthYears = [1994, 2000, 2012, 1955, 1976];
 
-		// Utility function to get a random element from an array
 		function getRandomElement(array: any) {
 			return array[Math.floor(Math.random() * array.length)];
 		}
 
-		// Utility function to get a random date in a specific year
 		function getRandomDateInYear(year: any) {
 			const start = new Date(year, 0, 1);
 			const end = new Date(year + 1, 0, 1);
@@ -103,10 +100,8 @@ export class FormService {
 			const currForms = JSON.parse(localStorage.getItem('formsDb') || '[]');
 			if (currForms.length === 0)
 				localStorage.setItem('formsDb', JSON.stringify(userDetailsArray));
-			// localStorage.setItem('visitorsCounterDb', JSON.stringify(150));
 		}
 
-		// Call the function to generate and store the user details
 		generateAndStoreUserDetails();
 
 	}

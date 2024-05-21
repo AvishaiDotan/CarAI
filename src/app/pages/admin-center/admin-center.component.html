@@ -54,7 +54,7 @@
         <h3 class="py-4 roboto-medium complex-data-header  d-flex gap-5 justify-content-center">
             General View 
         </h3>
-        <div class="polar-graph graph roboto-medium" >
+        <div class="polar-graph graph roboto-medium" style="height: 370px;">
             <ngx-charts-area-chart
             [showXAxisLabel]="true"
             [xAxis]="true"
@@ -97,7 +97,7 @@
             {{ p }}
         </span>
     </h3>
-    <div class="car-details-graph graph roboto-medium">
+    <div class="car-details-graph graph roboto-medium" >
         <ngx-charts-pie-chart
         [scheme]="colorScheme"
         [results]="(carDetailsGraphData$ | async)"

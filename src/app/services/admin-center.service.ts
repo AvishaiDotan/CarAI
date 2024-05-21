@@ -107,7 +107,7 @@ export class AdminCenterService {
 	public incrementVisitorCounter() {
 		let currCount = this.localStorageService.getItem<number>(this.visitorsCounterDbKey) || 0;
 		if (currCount === 0) {
-			currCount = 75;
+			currCount = 125;
 		}
 		this.localStorageService.setItem(this.visitorsCounterDbKey, currCount + 1);
 	}
