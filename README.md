@@ -53,7 +53,7 @@ https://github.com/AvishaiDotan/CarAI/assets/108017307/88dde3a0-fc1c-46bb-ad11-c
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/CarAI.git
+    git clone https://github.com/avishaidotan/CarAI.git
     ```
 2. Navigate to the project directory:
     ```bash
