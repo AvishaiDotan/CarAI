@@ -4,7 +4,7 @@
     <section class="d-flex justify-content-between flex-column gap-6">
         <div class="d-flex justify-content-between gap-6">
             <!-- Full Name Field -->
-            <mat-form-field>
+            <mat-form-field class="flex-grow-1">
                 <mat-label>Full Name</mat-label>
                 <input maxlength="10" matInput formControlName="fullName" required>
                 <mat-error *ngIf="personalDetailsFrom.controls['fullName'].hasError('required')">
@@ -22,7 +22,7 @@
             </mat-form-field>
 
             <!-- Gender Field -->
-            <mat-form-field>
+            <mat-form-field class="flex-grow-1">
                 <mat-label>Gender</mat-label>
                 <mat-select formControlName="gender" required>
                     <mat-option *ngFor="let g of genders" value="{{g}}">
@@ -37,7 +37,7 @@
 
         <div class="d-flex justify-content-between gap-6">
             <!-- Email Field -->
-            <mat-form-field>
+            <mat-form-field class="flex-grow-1">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" required type="email">
                 <mat-error *ngIf="personalDetailsFrom.controls['email'].hasError('required')">
@@ -49,7 +49,7 @@
             </mat-form-field>
 
             <!-- Birth Date Field -->
-            <mat-form-field>
+            <mat-form-field class="flex-grow-1">
                 <mat-label>Birth Date</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="birthDate" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
