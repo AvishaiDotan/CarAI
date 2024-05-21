@@ -1,5 +1,5 @@
 import { CommonModule, AsyncPipe } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgModule, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AdminCenterService } from '../../services/admin-center.service';
 import { Observable, Subscription } from 'rxjs';
 import { AppStatistics, GraphDataItem, PolarGraphItem, UserDetailsForm } from '../../models';
@@ -28,7 +28,11 @@ export class AdminCenterComponent implements OnInit {
 	polarGraphData$!: Observable<PolarGraphItem[]>;
 
 
-	constructor(private adminCenterService: AdminCenterService, private formService: FormService) { }
+	constructor(
+		private adminCenterService: AdminCenterService,
+		private formService: FormService,
+	) {
+	}
 
 	generalUserDetailsGraphProperties: activeUserDetailsGraphProperty[] = ['country', 'gender', 'age'];
 	carDetailsGraphProperties: ActiveCarDetailsGraphProperty[] = ['motor type', 'seats'];
@@ -41,23 +45,12 @@ export class AdminCenterComponent implements OnInit {
 		'Hobbies',
 		'Seats',
 	]
-
-
-
 	colorScheme: any = {
 		domain: ['#7bccdc', '#1181af', '#042d5f']
 	};
+
 	displayedColumns: string[] = ['fullName', 'birthDate', 'country', 'hobbies'];
-	data = [
-		{
-			"name": "Female",
-			"value": 8940000
-		},
-		{
-			"name": "Male",
-			"value": 5000000
-		}
-	];
+
 	ngOnInit(): void {
 		this.adminCenterService.loadAppStatistics();
 		this.adminCenterService.loadUserDetailsGraphData();
@@ -72,6 +65,7 @@ export class AdminCenterComponent implements OnInit {
 		this.polarGraphData$ = this.adminCenterService.polarGraphItem$;
 		this.forms$ = this.formService.formsDb$;
 	}
+	
 
 	parseAge(timestamp: number): number {
 		const dateOfBirth = new Date(timestamp);
@@ -100,5 +94,10 @@ export class AdminCenterComponent implements OnInit {
 		else {
 			this.adminCenterService.loadCarDetailsGraphData(property as ActiveCarDetailsGraphProperty);
 		}
+	}
+
+	forceRefreshValue: string = '';
+	onResize() {
+		this.forceRefreshValue += this.forceRefreshValue;
 	}
 }
