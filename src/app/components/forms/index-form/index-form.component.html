@@ -1,7 +1,7 @@
 <!-- <personal-details-form [personalDetailsFrom]="personalDetailsform" />
 <location-form [locationFrom]="locationDetailsForm" /> -->
 
-<div [ngSwitch]="currFormIdx$ | async" >
+<div [ngSwitch]="currFormIdx$ | async" class="form-container">
     <personal-details-form
         (onFormValidationChange)="formValidationChange($event, 0)" 
         *ngSwitchCase="0"

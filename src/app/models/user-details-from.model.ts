@@ -11,6 +11,5 @@ export type UserDetailsForm = {
     seats: number;
     motorType: MotorType;
 }
-
 export type Hobbie = 'Reading' | 'Traveling' | 'Playing Video Games' | 'Watching Movies' | 'Listening to Music' | 'Cooking' | 'Exercising';
 export type MotorType = 'Petrol' | 'Diesel' | 'Electric' | 'Hybrid';

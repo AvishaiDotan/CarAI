@@ -1,5 +1,12 @@
-<div class="top-bar d-flex gap-3 align-item-center">
+<div *ngIf="!isCancelAction, else cancelTemplate" class="top-bar d-flex gap-3 align-item-center">
     <button (click)="getBack()">
         <mat-icon>arrow_back</mat-icon>
     </button>
 </div>
+<ng-template #cancelTemplate>
+    <div class="top-bar d-flex gap-3 align-item-center">
+        <button (click)="onCancel.emit()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+</ng-template>

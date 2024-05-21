@@ -3,6 +3,8 @@ import { UserDetailsForm } from '../models';
 import { LocalStorageService } from './local-storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserMessageService } from './user-message.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,12 +17,16 @@ export class FormService {
 
 	constructor(
 		private localStorageService: LocalStorageService,
-		private userMessageService: UserMessageService) {
+		private userMessageService: UserMessageService,
+		private domSanitizer: DomSanitizer	,
+		private spinnerService: SpinnerService
+	) {
 		this.mockData();
 	}
 
 	public async postUserDetailsForm(userDetailsForm: UserDetailsForm): Promise<void> {
 
+		this.sanitizeForm(userDetailsForm);
 		try {
 			const forms = this.localStorageService.getItem<UserDetailsForm[]>(this.formsDbKey) || [];
 			forms.push(userDetailsForm);
@@ -94,11 +100,46 @@ export class FormService {
 			for (let i = 0; i < 100; i++) {
 				userDetailsArray.push(generateUserDetails());
 			}
-			localStorage.setItem('formsDb', JSON.stringify(userDetailsArray));
+			const currForms = JSON.parse(localStorage.getItem('formsDb') || '[]');
+			if (currForms.length === 0)
+				localStorage.setItem('formsDb', JSON.stringify(userDetailsArray));
+			// localStorage.setItem('visitorsCounterDb', JSON.stringify(150));
 		}
 
 		// Call the function to generate and store the user details
 		generateAndStoreUserDetails();
 
+	}
+
+	sanitizeForm(userDetailsForm: {[key: string]: any}) {
+		try {
+			var keys = Object.keys(userDetailsForm);
+			for (let key of keys) { 
+				switch (key) {
+					case 'fullName':
+					case 'gender': 
+					case 'email': 
+					case 'birthDate': 
+					case 'address':
+					case 'city':
+					case 'country':
+					case 'favoriteColor':	
+					case 'seats':	
+					case 'motorType':
+						userDetailsForm[key] = this.domSanitizer.sanitize(1, userDetailsForm[key]);
+						break;
+					case 'hobbies':
+						userDetailsForm[key] = userDetailsForm[key].map((hobby: string) => this.domSanitizer.sanitize(1, hobby));
+					break;
+						default:
+						break;
+				}
+	
+			}
+		}
+		catch (error: any) {
+			this.userMessageService.showMessage(error);
+			this.spinnerService.cancel();
+		}
 	}
 }

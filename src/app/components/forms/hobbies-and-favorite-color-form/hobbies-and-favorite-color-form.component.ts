@@ -52,13 +52,13 @@ export class HobbiesAndFavoriteColorFormComponent {
 		"#BEDADCff", // Light Blue
 		"#FEF3BDff", // Lemon Chiffon
 		"#8B5F65", // lightpink 4
-		"#1273DEff", // Celtic Blue
-		"#006B76ff", // Caribbean Current
-		"#5300EBff", // Chrysler Blue
-		"#004DCFff", // Sapphire
-		"#008A02ff", // India Green
-		"#FCCB00ff", // Jonquil
-		'#FF6633', '#FFB399', '#FF33FF', '#FFFF99',
+		// "#1273DEff", // Celtic Blue
+		// "#006B76ff", // Caribbean Current
+		// "#5300EBff", // Chrysler Blue
+		// "#004DCFff", // Sapphire
+		// "#008A02ff", // India Green
+		// "#FCCB00ff", // Jonquil
+		// '#FF6633', '#FFB399', '#FF33FF', '#FFFF99',
 	  ];
 
 	hobbies: Hobbie[] = [

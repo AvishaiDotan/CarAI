@@ -5,3 +5,9 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+@media (width <= 540px) {
+    .form-container {
+        margin-inline: 20px;
+    }
+}

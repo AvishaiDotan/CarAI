@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule, MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { Observable, Subscription, finalize, interval, map, take } from 'rxjs';
+import { Observable, Subject, Subscription, finalize, interval, map, take, takeUntil } from 'rxjs';
 import { SpinnerService } from '../../services/spinner.service';
 import { SpinnerActivationPayload } from '../../models';
 import { BackButtonComponent } from '../buttons/back-button/back-button.component';
@@ -19,12 +19,15 @@ import { BackButtonComponent } from '../buttons/back-button/back-button.componen
 })
 export class SpinnerComponent implements OnInit, OnDestroy {
 
-	private subscription!: Subscription;
-  
+	private spinnerStateSubscription!: Subscription;
+	private messageIntervalSubscription!: Subscription;
+	cancelToken = new Subject<void>();
+
+
 	constructor(private spinnerService: SpinnerService, private router: Router) {}
   
 	ngOnInit() {
-	  this.subscription = this.spinnerService.spinnerState$.subscribe(
+	  this.spinnerStateSubscription = this.spinnerService.spinnerState$.subscribe(
 		(activationPayload: SpinnerActivationPayload) => {
 			if (activationPayload.isShow) {
 				this.show(activationPayload);
@@ -37,40 +40,44 @@ export class SpinnerComponent implements OnInit, OnDestroy {
 	}
   
 	ngOnDestroy() {
-	  if (this.subscription) {
-		this.subscription.unsubscribe();
+	  if (this.spinnerStateSubscription) {
+		this.spinnerStateSubscription.unsubscribe();
 	  }
 	}
 
 	message: string | undefined;
-	spinnerTextMessages = [
-		'We Are Processing Your Request...',
-		'Your Car Suggestion Are On The Way...',
-		'Please Wait...',
-		'Our Agent Is Working On Your Request...',
-		'Just A Moment...',
-		'Your Car Suggestion Are Being Prepared...',
-		'Thank You For Your Patience...',
-	]
 	displaySettings = 'hide'
 
 
 	show(activationPayload: SpinnerActivationPayload) {
 		this.displaySettings = 'show';
 
-		interval(1500).pipe(
-			take(activationPayload.messages.length),  // Limit the number of emissions to the length of spinnerTextMessages
-			map(index => activationPayload.messages[index]),  // Map each emission to the corresponding message
+		this.message = activationPayload.messages[0];
+
+		this.messageIntervalSubscription = interval(1500).pipe(
+			take(activationPayload.messages.length),  
+			map(index => activationPayload.messages[index]),  
+			takeUntil(this.spinnerService.cancelToken$), 
 			finalize(() => {
 				this.displaySettings = 'hide';
 				activationPayload.callBackFunction();
 			})
 		).subscribe(message => {
-			this.message = message;  // Update the bound property
+			this.message = message;  
 		});
+
+
+
+		
 	}
 
 	goToHome() {
+		this.router.navigate(['/form']);
+	}
+
+	cancelAction() {
+		this.spinnerService.cancel();
+		this.message = "";
 		this.router.navigate(['/form']);
 	}
 

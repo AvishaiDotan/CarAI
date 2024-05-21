@@ -39,27 +39,27 @@ export class UtilitiesService {
 		return maxOccurrences;
 	}
 
-	getCountryWithMostOccurrences(objects: any[]) {
-		const occurrenceMap: any = {};
-		let maxOccurrences = 0;
-		let mostFrequentCountry = '';
+	// getCountryWithMostOccurrences(objects: any[]) {
+	// 	const occurrenceMap: any = {};
+	// 	let maxOccurrences = 0;
+	// 	let mostFrequentCountry = '';
 
-		objects.forEach(obj => {
-			const country = obj.country;
-			if (occurrenceMap[country]) {
-				occurrenceMap[country] += 1;
-			} else {
-				occurrenceMap[country] = 1;
-			}
+	// 	objects.forEach(obj => {
+	// 		const country = obj.country;
+	// 		if (occurrenceMap[country]) {
+	// 			occurrenceMap[country] += 1;
+	// 		} else {
+	// 			occurrenceMap[country] = 1;
+	// 		}
 
-			if (occurrenceMap[country] > maxOccurrences) {
-				maxOccurrences = occurrenceMap[country];
-				mostFrequentCountry = country;
-			}
-		});
+	// 		if (occurrenceMap[country] > maxOccurrences) {
+	// 			maxOccurrences = occurrenceMap[country];
+	// 			mostFrequentCountry = country;
+	// 		}
+	// 	});
 
-		return mostFrequentCountry;
-	}
+	// 	return mostFrequentCountry;
+	// }
 
 	getSumGenderCounts(objects: any[]): GraphDataItem[] {
 		const genderCounts = objects.reduce((acc, obj) => {

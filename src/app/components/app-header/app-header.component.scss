@@ -1,13 +1,22 @@
 @import '../../../assets/styles/colorPallet';
 
 header {
+    // height: 50px;
+    // position: sticky;
+    // inset-block-start: 0;
+    // position: absolute;
+    // width: 100%;
+    // background-color: $black;
+    // color: $white;
+
     height: 50px;
     position: sticky;
     inset-block-start: 0;
-    position: absolute;
+    position: fixed;
     width: 100%;
-    background-color: $black;
-    color: $white;
+    background-color: #0b0014;
+    color: #d6ecf0;
+    z-index: 1000;
 
     .mat-toolbar-row {
         width: 100%;

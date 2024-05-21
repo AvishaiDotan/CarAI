@@ -22,7 +22,7 @@
 
 <section class="container">
     <div class="d-flex flex-column">
-        <section *ngIf="(forms$ | async) as forms" class="table-container m-5 d-flex flex-column" style="flex-basis: 50%;">
+        <section *ngIf="(forms$ | async) as forms" class="table-container m-5 d-flex flex-column">
             <div>
                 <table mat-table [dataSource]="forms" class="mat-elevation-z8" [autocapitalize]="true">
             
@@ -54,7 +54,7 @@
         <h3 class="py-4 roboto-medium complex-data-header  d-flex gap-5 justify-content-center">
             General View 
         </h3>
-        <div class="polar-graph graph roboto-medium" style="flex-basis: 50%;">
+        <div class="polar-graph graph roboto-medium" style="flex-basis: calc(50% - 30px)">
             <ngx-charts-area-chart
             [showXAxisLabel]="true"
             [xAxis]="true"

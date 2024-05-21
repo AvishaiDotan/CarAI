@@ -30,15 +30,22 @@ export class AdminCenterService {
 	private _polarGraphItem$: BehaviorSubject<PolarGraphItem[]> = new BehaviorSubject<PolarGraphItem[]>([])
 	polarGraphItem$ = this._polarGraphItem$.asObservable();
 
-	constructor(private formService: FormService, private utilityService: UtilitiesService) { }
+	private visitorsCounterDbKey = 'visitorsCounterDb';
+
+	constructor(
+		private formService: FormService, 
+		private utilityService: UtilitiesService,
+		private localStorageService: LocalStorageService
+	) { }
 
 	public loadAppStatistics() {
 		var allForms = this.formService.getAllFormsSync();
+		const totalVisitors = this.localStorageService.getItem<number>(this.visitorsCounterDbKey) || 0;
 		const appStatistics: AppStatistics = {
-			"Total Visitors": 100,
+			"Total Visitors": totalVisitors,
 			"Total Forms Submitted": allForms.length,
 			"Max Submissions Per Day": this.utilityService.getBirthDateWithMostOccurrences(allForms),
-			"Top Country": this.utilityService.getCountryWithMostOccurrences(allForms)
+			"Conversion Rate": `${(allForms.length / totalVisitors * 100).toFixed(2)}%`
 		}
 		this._appStatistics$.next(appStatistics);
 	}
@@ -92,14 +99,19 @@ export class AdminCenterService {
 	}
 
 	public loadPolarGraphData(): void {
-		var allForms = this.formService.getAllFormsSync();
-
-
-
-		var data = this.utilityService.getPolarGraphData(allForms);
-		console.log(data);
-		
+		let allForms = this.formService.getAllFormsSync();
+		let data = this.utilityService.getPolarGraphData(allForms);
 		this._polarGraphItem$.next(data);
 	}
+
+	public incrementVisitorCounter() {
+		let currCount = this.localStorageService.getItem<number>(this.visitorsCounterDbKey) || 0;
+		if (currCount === 0) {
+			currCount = 75;
+		}
+		this.localStorageService.setItem(this.visitorsCounterDbKey, currCount + 1);
+	}
+
+
 
 }

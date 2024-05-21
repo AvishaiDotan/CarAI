@@ -45,6 +45,10 @@ header.admin-center-header {
     position: relative;
     border-bottom: 1px solid $white-light;
     z-index: 100;
+
+    @media (width <= 800px) {
+        display: none  ;
+      }
 }
 
 .container {
@@ -60,8 +64,15 @@ header.admin-center-header {
         flex-basis: 50%;
     }
 
+    @media (width <= 800px) {
+        flex-direction: column  ;
+      }
+
     .right-graphs-container  {
         border-inline-start: 1px solid $white-light;
+        @media (width <= 800px) {
+            border-inline-start: none;
+          }
         > .graph {
             flex-basis: 40%;
         }
@@ -73,11 +84,18 @@ header.admin-center-header {
 
     height: calc(100vh - 190px);
     background: $blue-dark;
+    @media (width <= 800px) {
+        height: auto;
+    }
 
     .table-container {
         overflow: auto;
         grid-row: 1 / 3; 
         position: relative;
+        flex-basis: 50%;
+        @media (width <= 800px) {
+            flex-basis: initial;
+        }
     }
 
     .general-user-details-graph, .complex-data-header {

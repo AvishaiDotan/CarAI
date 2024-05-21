@@ -1,5 +1,7 @@
 main { 
     margin-block-start: 50px;
-    min-height: calc(100vh - 110px);
-    height: calc(100vh - 110px);
+    :not(.admin-page) {
+        min-height: calc(100vh - 110px);
+        height: calc(100vh - 110px);
+    }
 }
