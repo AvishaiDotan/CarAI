@@ -1,0 +1,167 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25+Charted&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25+Charted&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Pathway+Extreme:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@mixin kanit-font($weight, $style: normal) {
+    font-family: "Kanit", sans-serif;
+    font-weight: $weight;
+    font-style: $style;
+  }
+  
+  @mixin kanit($weight, $italic: false) {
+    @if $italic {
+      @include kanit-font($weight, italic);
+    } @else {
+      @include kanit-font($weight);
+    }
+  }
+  
+  @mixin pathway-extreme($uniquifier, $weight) {
+    .pathway-extreme-#{$uniquifier} {
+      font-family: "Pathway Extreme", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: $weight;
+      font-style: normal;
+      font-variation-settings: "wdth" 100;
+    }
+  }
+  
+  // Usage for Kanit
+  .kanit-thin {
+    @include kanit(100);
+  }
+  
+  .kanit-extralight {
+    @include kanit(200);
+  }
+  
+  .kanit-light {
+    @include kanit(300);
+  }
+  
+  .kanit-regular {
+    @include kanit(400);
+  }
+  
+  .kanit-medium {
+    @include kanit(500);
+  }
+  
+  .kanit-semibold {
+    @include kanit(600);
+  }
+  
+  .kanit-bold {
+    @include kanit(700);
+  }
+  
+  .kanit-extrabold {
+    @include kanit(800);
+  }
+  
+  .kanit-black {
+    @include kanit(900);
+  }
+  
+  .kanit-thin-italic {
+    @include kanit(100, true);
+  }
+  
+  .kanit-extralight-italic {
+    @include kanit(200, true);
+  }
+  
+  .kanit-light-italic {
+    @include kanit(300, true);
+  }
+  
+  .kanit-regular-italic {
+    @include kanit(400, true);
+  }
+  
+  .kanit-medium-italic {
+    @include kanit(500, true);
+  }
+  
+  .kanit-semibold-italic {
+    @include kanit(600, true);
+  }
+  
+  .kanit-bold-italic {
+    @include kanit(700, true);
+  }
+  
+  .kanit-extrabold-italic {
+    @include kanit(800, true);
+  }
+  
+  .kanit-black-italic {
+    @include kanit(900, true);
+  }
+  
+  // Usage for Pathway Extreme
+  @include pathway-extreme(thin, 100);
+  @include pathway-extreme(extralight, 200);
+  @include pathway-extreme(light, 300);
+  @include pathway-extreme(regular, 400);
+  @include pathway-extreme(medium, 500);
+  @include pathway-extreme(semibold, 600);
+  @include pathway-extreme(bold, 700);
+  @include pathway-extreme(extrabold, 800);
+  @include pathway-extreme('black', 900);
+
+  @mixin roboto-font($weight, $style: normal) {
+    font-family: "Roboto", sans-serif;
+    font-weight: $weight;
+    font-style: $style;
+  }
+  
+  // Usage examples
+  .roboto-thin {
+    @include roboto-font(100);
+  }
+  
+  .roboto-light {
+    @include roboto-font(300);
+  }
+  
+  .roboto-regular {
+    @include roboto-font(400);
+  }
+  
+  .roboto-medium {
+    @include roboto-font(500);
+  }
+  
+  .roboto-bold {
+    @include roboto-font(700);
+  }
+  
+  .roboto-black {
+    @include roboto-font(900);
+  }
+  
+  .roboto-thin-italic {
+    @include roboto-font(100, italic);
+  }
+  
+  .roboto-light-italic {
+    @include roboto-font(300, italic);
+  }
+  
+  .roboto-regular-italic {
+    @include roboto-font(400, italic);
+  }
+  
+  .roboto-medium-italic {
+    @include roboto-font(500, italic);
+  }
+  
+  .roboto-bold-italic {
+    @include roboto-font(700, italic);
+  }
+  
+  .roboto-black-italic {
+    @include roboto-font(900, italic);
+  }

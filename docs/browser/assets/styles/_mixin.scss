@@ -1,0 +1,98 @@
+// Define padding sizes
+$padding-sizes: 0, 4px, 8px, 16px, 24px, 32px, 36px, 48px, 64px, 96px, 128px, 256px, 512px;
+
+// Mixin to generate padding classes
+@mixin generate-padding-classes($sizes) {
+  @each $size in $sizes {
+    $size-name: if($size == 0, 0, index($sizes, $size));
+    
+    // All sides padding
+    .p-#{$size-name} { padding: $size !important; }
+    
+    // Block (top and bottom) padding
+    .pt-#{$size-name} { padding-block-start: $size !important; }
+    .pb-#{$size-name} { padding-block-end: $size !important; }
+    
+    // Inline (left and right) padding
+    .pl-#{$size-name} { padding-inline-start: $size !important; }
+    .pr-#{$size-name} { padding-inline-end: $size !important; }
+
+    .px-#{$size-name} { padding-inline: $size !important; }
+    .py-#{$size-name} { padding-block: $size !important; }
+
+    .m-#{$size-name} { margin: $size !important; }
+    
+    // Block (top and bottom) padding
+    .mt-#{$size-name} { margin-block-start: $size !important; }
+    .mb-#{$size-name} { margin-block-end: $size !important; }
+    
+    // Inline (left and right) padding
+    .ml-#{$size-name} { margin-inline-start: $size !important; }
+    .mr-#{$size-name} { margin-inline-end: $size !important; }
+
+    .mx-#{$size-name} { margin-inline: $size !important; }
+    .my-#{$size-name} { margin-block: $size !important; }
+  }
+}
+
+// Call the mixin with the defined sizes
+@include generate-padding-classes($padding-sizes);
+
+// Define font sizes
+$font-sizes: (
+  0.75rem,  // Small
+  1rem,     // Base
+  1.25rem,  // Large
+  1.5rem,   // Extra Large
+  2rem,     // 2x Large
+  3rem      // 3x Large
+);
+
+// Mixin to generate font size classes
+@mixin generate-font-size-classes($sizes) {
+  @each $size in $sizes {
+    $size-name: index($sizes, $size);
+    .fs-#{$size-name} { font-size: $size; }
+  }
+}
+
+// Call the mixin with the defined sizes
+@include generate-font-size-classes($font-sizes);
+
+$thin-spacing: 0.05em;
+$medium-spacing: 0.1em;
+$wide-spacing: 0.15em;
+$extra-wide-spacing: 0.2em;
+
+@mixin letter-spacing($spacing) {
+  letter-spacing: $spacing;
+}
+
+// Usage examples with generated classes
+.thin-spacing {
+  @include letter-spacing($thin-spacing);
+}
+
+.medium-spacing {
+  @include letter-spacing($medium-spacing);
+}
+
+.wide-spacing {
+  @include letter-spacing($wide-spacing);
+}
+
+.extra-wide-spacing {
+  @include letter-spacing($extra-wide-spacing);
+}
+
+@mixin generate-gap-classes($sizes) {
+  @each $size in $sizes {
+    $size-name: if($size == 0, 0, index($sizes, $size));
+    
+    // All sides padding
+    .gap-#{$size-name} { gap: $size !important; }
+  }
+}
+
+// Call the mixin with the defined sizes
+@include generate-gap-classes($padding-sizes);

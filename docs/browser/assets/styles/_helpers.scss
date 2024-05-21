@@ -1,0 +1,48 @@
+
+//Flexbox helpers
+.d-flex {
+    display: flex;
+}
+.justify-content-center {
+    justify-content: center;
+}   
+.justify-content-end {
+    justify-content: end;
+}  
+
+.justify-content-between {
+    justify-content: space-between;
+}  
+.align-items-center {
+    align-items: center;
+}
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.margin-auto {
+    margin: auto;
+
+}
+
+
+// Size
+.h-100 {
+    height: 100%;
+}
+
+.text-nowrap {
+    text-wrap: nowrap;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
