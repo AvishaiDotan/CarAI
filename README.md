@@ -36,3 +36,24 @@ The Admin Center is the place for administrators to view results and statistics.
 - Data analysis and conversion into graph data
 - Options to change the data displayed in the graphs
 - Information about website visitors and conversion rates
+
+### Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/CarAI.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd CarAI
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
+
+### Running the Application
+
+To run the application, use the following command:
+```bash
+ng serve
