@@ -1,7 +1,7 @@
-# CarAI
+# CarAI [Link]([https://your-deployment-link.com](https://avishaidotan.github.io/CarAI/CarAI/)).
 
 **CarAI is an application that allows users to fill out a form and receive an email with the best-fit car for them based on their input.**
-You can access the live version of the application [here](https://your-deployment-link.com).
+
 
 ![Untitled design](https://github.com/AvishaiDotan/CarAI/assets/108017307/3acdbe60-aa59-4eb2-8f0c-398403be1440)
 
