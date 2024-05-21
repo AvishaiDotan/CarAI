@@ -24,6 +24,7 @@
 ### CarAI Form
 
 The form is a reactive form with `built-in validations and custom validations`. It uses a pagination component to navigate between different parts of the form. When submitted, the form checks the security of the input using `DomSanitizer`.
+![Untitled design (12)](https://github.com/AvishaiDotan/CarAI/assets/108017307/92d8fe1b-b162-4542-afac-7e2a23bbe391)
 
 ### CarAI Admin Center
 
