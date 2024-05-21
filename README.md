@@ -1,8 +1,10 @@
 # CarAI
 
 **CarAI is an application that allows users to fill out a form and receive an email with the best-fit car for them based on their input.**
+You can access the live version of the application [here](https://your-deployment-link.com).
 
-![Untitled design](https://github.com/AvishaiDotan/CarAI/assets/108017307/90629b3e-7e7a-4d18-8747-82368f3ca64b)
+![Untitled design](https://github.com/AvishaiDotan/CarAI/assets/108017307/3acdbe60-aa59-4eb2-8f0c-398403be1440)
+
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -22,12 +24,15 @@ CarAI is an application designed to help users find the best-fit car for them ba
 ### CarAI Form
 The form is a reactive form with built-in validations and custom validations. It uses a pagination component to navigate between different parts of the form. When submitted, the form checks the security of the input using DomSanitizer.
 
-![Untitled design (12)](https://github.com/AvishaiDotan/CarAI/assets/108017307/92d8fe1b-b162-4542-afac-7e2a23bbe391)
+
+https://github.com/AvishaiDotan/CarAI/assets/108017307/cc6d9309-e3bd-4b26-8645-91fadce60925
 
 ### CarAI Admin Center
 The Admin Center is the place for administrators to view results and statistics. It contains:
 
-![Untitled design (13)](https://github.com/AvishaiDotan/CarAI/assets/108017307/86cac005-0f91-4346-a0ff-26ab94c0f370)
+
+https://github.com/AvishaiDotan/CarAI/assets/108017307/88dde3a0-fc1c-46bb-ad11-c7afc65cd66a
+
 
 - A table for detailed data
 - Three graphs generated with `ngx-graph`
