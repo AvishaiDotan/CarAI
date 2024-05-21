@@ -5,7 +5,7 @@
 
 ![Untitled design](https://github.com/AvishaiDotan/CarAI/assets/108017307/3acdbe60-aa59-4eb2-8f0c-398403be1440)
 
-Link: ([Here](https://avishaidotan.github.io/CarAI)
+Link: ([Here](https://avishaidotan.github.io/CarAI))
 
 
 ## Table of Contents
